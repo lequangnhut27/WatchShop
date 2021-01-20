@@ -1,0 +1,273 @@
+﻿@model IEnumerable<WatchShop.Data.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+           aria-selected="true">Chờ xác nhận</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+           aria-selected="false">Đang xử lý</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+           aria-selected="false">Đã giao hàng</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="cancel-tab" data-toggle="tab" href="#cancel" role="tab" aria-controls="cancel"
+           aria-selected="false">Đã huỷ</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachHang.MaKH)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachHang.HoTen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TongGiaTriHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayLapHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TinhTrangHoaDon.MoTa)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.MaTTHD.ToUpper() != "CHUA")
+                {
+                    continue;
+                }
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KhachHang.MaKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KhachHang.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongGiaTriHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayLapHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TinhTrangHoaDon.MoTa)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHD }) |
+                        @Html.ActionLink("Xác nhận", "XacNhanHoaDon", new { id = item.MaHD }) |
+                        @Html.ActionLink("Huỷ", "Cancel", new { id = item.MaHD })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachHang.MaKH)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachHang.HoTen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TongGiaTriHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayLapHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Shipper.MaShipper)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TinhTrangHoaDon.MoTa)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.MaTTHD.ToUpper() != "XULY")
+                {
+                    continue;
+                }
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KhachHang.MaKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KhachHang.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongGiaTriHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayLapHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Shipper.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TinhTrangHoaDon.MoTa)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHD })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachHang.MaKH)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachHang.HoTen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TongGiaTriHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayLapHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Shipper.MaShipper)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TinhTrangHoaDon.MoTa)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.MaTTHD.ToUpper() != "DA")
+                {
+                    continue;
+                }
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KhachHang.MaKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KhachHang.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongGiaTriHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayLapHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Shipper.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TinhTrangHoaDon.MoTa)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHD })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="tab-pane fade" id="cancel" role="tabpanel" aria-labelledby="cancel-tab">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachHang.MaKH)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachHang.HoTen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TongGiaTriHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayLapHD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Shipper.MaShipper)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TinhTrangHoaDon.MoTa)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.MaTTHD.ToUpper() != "HUY")
+                {
+                    continue;
+                }
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KhachHang.MaKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KhachHang.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongGiaTriHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayLapHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Shipper.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TinhTrangHoaDon.MoTa)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHD })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

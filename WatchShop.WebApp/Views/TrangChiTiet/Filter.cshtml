@@ -1,0 +1,52 @@
+﻿@model WatchShop.Data.ViewModels.InfoFilter
+
+@{
+    ViewBag.Title = ViewBag.TitleFilter;
+}
+
+
+<section class="section-content">
+    <div class="container">
+
+        @using (Html.BeginForm("Filter", "TrangChiTiet", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => Model.isDongHoGiamGia)
+            @Html.HiddenFor(model => Model.isDongHoThoiTrang)
+            @Html.HiddenFor(model => Model.isDongHoThongMinh)
+            <br /><h4>Thương hiệu</h4><br />
+            <div class="row">
+                @for (int i = 0; i < Model.SelectedThuongHieus.Count; i++)
+                {
+                    <label class="col-2 checkbox-btn">
+                        @Html.HiddenFor(model => Model.SelectedThuongHieus[i].ThuongHieu.MaTH)
+                        @Html.HiddenFor(model => Model.SelectedThuongHieus[i].ThuongHieu.AnhURL)
+                        @Html.CheckBoxFor(selectedTH => Model.SelectedThuongHieus[i].IsSelected)
+                        <span class="btn btn-light" style="padding:2px"><img src="@Url.Content(Model.SelectedThuongHieus[i].ThuongHieu.AnhURL)" class="img-thumbnail" alt="" height="30px" /></span>
+                    </label>
+                }
+            </div>
+            if (Model.isDongHoThoiTrang)
+            {
+                <div class="form-group">
+                    <div class="col-6">
+                        @Html.CheckBoxFor(model => model.isNam) Nam
+                        @Html.CheckBoxFor(model => model.isNu) Nữ
+                        @Html.CheckBoxFor(model => model.isTreEm) Trẻ em
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                <label>Mức giá</label>
+                <div class="col-6">
+                    @Html.EditorFor(model => model.MinPrice) - 
+                    @Html.EditorFor(model => model.MaxPrice)
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Lọc</button>
+        }
+        <header class="section-heading">
+            <h3 class="section-title">@ViewBag.TitleFilter</h3>
+        </header>
+        @{ Html.RenderAction("ContentFilter", "TrangChiTiet", Model); }
+    </div>
+</section>

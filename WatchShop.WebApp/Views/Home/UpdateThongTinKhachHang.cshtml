@@ -1,0 +1,112 @@
+﻿@model WatchShop.Data.Models.KhachHang
+
+@{
+    ViewBag.Title = "Cập nhật thông tin";
+}
+
+@if (TempData["CapNhatMess"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                @Html.Raw(TempData["CapNhatMess"]);
+            };
+    </script>
+}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+    <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+        <article class="card-body">
+            <header class="mb-4"><h4 class="card-title">Cập nhật thông tin</h4></header>
+            @using (Html.BeginForm("UpdateThongTinKhachHang", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.MaKH)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TenDangNhap)
+                    @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                </div> <!-- form-group end.// -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Mật khẩu</label>
+                        @Html.EditorFor(kh => kh.MatKhau, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                        @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group col-md-6">
+                        <label>Nhập lại mật khẩu</label>
+                        <input class="form-control" type="password">
+                    </div> <!-- form-group end.// -->
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.HoTen)
+                    @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                </div> <!-- form-group end.// -->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email)
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div> <!-- form-group end.// -->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SoDT)
+                    @Html.EditorFor(model => model.SoDT, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SoDT, "", new { @class = "text-danger" })
+                </div> <!-- form-group end.// -->
+                <div class="form-group">
+                    <label class="custom-control custom-radio custom-control-inline">
+                        @Html.RadioButtonFor(model => model.GioiTinh, "Nam", htmlAttributes: new { @class = "custom-control-input" })
+                        <span class="custom-control-label"> Nam </span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        @Html.RadioButtonFor(model => model.GioiTinh, "Nữ", htmlAttributes: new { @class = "custom-control-input" })
+                        <span class="custom-control-label"> Nữ </span>
+                    </label>
+                </div> <!-- form-group end.// -->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AnhURL, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.HiddenFor(model => model.AnhURL)
+                        <img id="avatarImg" src="@Url.Content(Model.AnhURL)" alt="Avatar" width="100" height="100" />
+                        <input type='file' id="avatarInput" name="Avatar" />
+                        <button type="button" id="btnClearImg">Xoá</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Cập nhật</button>
+                </div> <!-- form-group// -->
+            }
+        </article><!-- card-body.// -->
+    </div> <!-- card .// -->
+    <br><br>
+    <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+@*Hiển thị hình ảnh xem trước khi lưu*@
+<script type="text/javascript">
+    function readURL(input, img) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                img.attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#avatarInput").change(function () {
+        readURL(this, $('#avatarImg'));
+    });
+
+    $('#btnClearImg').click(function () {
+        $('#avatarInput').val(null);
+        $('#avatarImg').attr('src', '/Content/img/AvatarKhachHang/DefaultAvatar.png');
+    });
+</script>
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

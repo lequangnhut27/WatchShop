@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Tạo hoá đơn</h2>
+
+<div id="contentFrmCreate">@{Html.RenderAction("ContentCreatePartial", "HoaDons");}</div>
+
+<p>
+    @Html.ActionLink("Quay lại", "Index")
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

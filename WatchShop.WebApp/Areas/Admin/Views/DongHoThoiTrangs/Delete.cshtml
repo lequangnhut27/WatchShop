@@ -1,0 +1,211 @@
+﻿@model WatchShop.Data.Models.DongHo
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Bạn có muốn xoá sản phẩm @Model.TenDH ?</h2>
+
+<div>
+    <hr />
+    <table class="table table-striped">
+        <tr>
+            <td colspan="2">
+                <img src="@Url.Content(Model.AnhChinhURL)" alt="AnhChinh" width="100" height="100" />
+                <img src="@Url.Content(Model.Anh1URL)" alt="AnhChinh" width="100" height="100" />
+                <img src="@Url.Content(Model.Anh2URL)" alt="AnhChinh" width="100" height="100" />
+                <img src="@Url.Content(Model.Anh3URL)" alt="AnhChinh" width="100" height="100" />
+                <img src="@Url.Content(Model.Anh4URL)" alt="AnhChinh" width="100" height="100" />
+            </td>
+        </tr>
+        <tr>
+            <th width="15%">
+                @Html.DisplayNameFor(model => model.MaDH):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.MaDH)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenDH):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.TenDH)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThuongHieu.TenTH):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.ThuongHieu.TenTH)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GiaGoc):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.GiaGoc)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ChiTietGiamGia.MoTa):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.ChiTietGiamGia.MoTa)
+            </td>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GiaBan):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.GiaBan)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuong):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.SoLuong)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.LoaiMay):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.LoaiMay)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.DuongKinhMat):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.DuongKinhMat)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.ChatLieuMatKinh):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.ChatLieuMatKinh)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.ChatLieuKhungVien):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.ChatLieuKhungVien)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.DoDayMat):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.DoDayMat)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.ChatLieuDay):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.ChatLieuDay)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.DoRongDay):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.DoRongDay)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.ThayDuocDay):
+            </th>
+            <td>
+                @if (Model.DongHoThoiTrang.ThayDuocDay == true)
+                {
+                    <span>Có</span>
+                }
+                else if (Model.DongHoThoiTrang.ThayDuocDay == false)
+                {
+                    <span>Không</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.DongHoThoiTrang.ThayDuocDay)
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.TienIch):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.TienIch)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.ChongNuoc):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.ChongNuoc)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.NguonNangLuong):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.NguonNangLuong)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.DoiTuong.TenDoiTuong):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.DoiTuong.TenDoiTuong)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DongHoThoiTrang.NoiSanXuat):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DongHoThoiTrang.NoiSanXuat)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MoTa):
+            </th>
+            <td>
+                @Html.Raw(Model.MoTa)
+            </td>
+        </tr>
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

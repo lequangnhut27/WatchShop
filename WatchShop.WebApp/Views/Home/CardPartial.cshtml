@@ -1,0 +1,24 @@
+﻿@model WatchShop.Data.Models.DongHo
+
+<div href="#" class="card card-product-grid">
+    <a href="@Url.Action("Details","TrangChiTiet", new { maDH = Model.MaDH })" class="img-wrap"> <img src="@Url.Content(Model.AnhChinhURL)" width="220" height="220"> </a>
+    @if (Model.MaGG != null)
+    {
+        <span class="badge badge-success">@Model.ChiTietGiamGia.MoTa</span>
+    }
+    <figcaption class="info-wrap" style="height:133px">
+        <a href="@Url.Action("Details","TrangChiTiet", new { maDH = Model.MaDH })" class="title" style="height:45px">@Html.DisplayFor(dh => Model.TenDH)</a>
+        <div class="mt-2">
+            <div class="text mt-1"><del>@Html.DisplayFor(dh => Model.GiaBan)</del></div> <!-- price-wrap.// -->
+            @if (Session["GioHang"] == null)
+            {
+                <a href="@Url.Action("Login","Home")" onclick="alert('Bạn phải đăng nhập')" class="btn btn-sm btn-outline-primary float-right">Thêm vào giỏ <i class="fa fa-shopping-cart"></i></a>
+            }
+            else
+            {
+                <a href="#" class="btn btn-sm btn-outline-primary float-right" onclick="AddToCard('@Model.MaDH', 1); alert('Đã thêm vào giỏ hàng'); return false;">Thêm vào giỏ <i class="fa fa-shopping-cart"></i></a>
+            }
+            <div class="price mt-1">@Html.DisplayFor(dh => Model.GiaGoc)</div> <!-- price-wrap.// -->
+        </div>
+    </figcaption>
+</div>

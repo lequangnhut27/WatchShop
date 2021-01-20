@@ -1,0 +1,141 @@
+﻿@model WatchShop.Data.Models.HoaDon
+
+@{
+    ViewBag.Title = "Thanh Toán";
+    WatchShop.Data.ViewModels.GioHang gioHang = Session["GioHang"] as WatchShop.Data.ViewModels.GioHang;
+}
+
+<section class="section-content padding-bottom-sm padding-top-sm">
+    <div class="container">
+        <header class="section-heading">
+            <h3 class="section-title">Xác nhận đơn hàng</h3>
+        </header>
+        @using (Html.BeginForm("ThanhToan", "GioHang", FormMethod.Post))
+        {
+            <div class="row">
+                <hr />
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KhachHang.MaKH):
+                        </th>
+                        <td>
+                            @Html.HiddenFor(model => model.MaKH)
+                            @Html.DisplayFor(model => model.MaKH)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.HoTen):
+                        </th>
+                        <td>
+                            @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none" } })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SoDT):
+                        </th>
+                        <td>
+                            @Html.EditorFor(model => model.SoDT, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none" } })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DiaChiGiaoHang):
+                        </th>
+                        <td>
+                            @Html.EditorFor(model => model.DiaChiGiaoHang, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none" } })
+                            @Html.ValidationMessageFor(model => model.DiaChiGiaoHang, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.HiddenFor(model => model.NgayLapHD)
+                            @Html.HiddenFor(model => model.NgayGiaoDuKien)
+                            @Html.DisplayNameFor(model => model.NgayGiaoDuKien):
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.NgayGiaoDuKien)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.HinhThucThanhToan.MoTa):
+                        </th>
+                        <td>
+                            @Html.DropDownListFor(model => model.MaHTTT, (IEnumerable<SelectListItem>)ViewBag.HTTT, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MaHTTT, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-bordered ta-center va-middle">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChiTietHoaDons[0].DongHo.MaDH)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChiTietHoaDons[0].DongHo.TenDH)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChiTietHoaDons[0].DongHo.AnhChinhURL)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChiTietHoaDons[0].DongHo.GiaBan)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChiTietHoaDons[0].SoLuong)
+                        </th>
+                        <th>
+                            Tổng
+                        </th>
+                    </tr>
+                    @for (int i = 0; i < Model.ChiTietHoaDons.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Html.HiddenFor(modelItem => Model.ChiTietHoaDons[i].MaDH)
+                                @Html.DisplayFor(modelItem => Model.ChiTietHoaDons[i].MaDH)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => gioHang.ListItems[i].TenDH)
+                            </td>
+                            <td>
+                                <img src="@Url.Content(gioHang.ListItems[i].AnhURL)" alt="AnhChinh" width="100" height="100" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => gioHang.ListItems[i].Gia)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(modelItem => Model.ChiTietHoaDons[i].SoLuong)
+                                @Html.DisplayFor(modelItem => Model.ChiTietHoaDons[i].SoLuong)
+                            </td>
+                            <td>
+                                @{
+                                    int? tong = gioHang.ListItems[i].Gia * gioHang.ListItems[i].SoLuong;
+                                }
+                                @string.Format("{0:N0} VNĐ", tong)
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <th colspan="6" class="text-right">
+                            @Html.HiddenFor(model => model.TongGiaTriHD)
+                            @Html.DisplayNameFor(model => model.TongGiaTriHD) : @Html.DisplayFor(model => model.TongGiaTriHD)
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <footer class="section-footer padding-bottom-sm">
+                <a href="@Url.Action("Index", "Home")" class="btn btn-success">Tiếp tục mua hàng</a>
+                <button type="submit" class="btn btn-warning float-right">Xác nhận thanh toán</button>
+            </footer>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

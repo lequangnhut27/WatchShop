@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WatchShop.Data.Models.AccountManager>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Danh sách tài khoản quản trị</h2>
+
+<p>
+    @Html.ActionLink("Tạo tài khoản", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnhURL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgaySinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GioiTinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoDT)
+        </td>
+        <td>
+            <img src="@Url.Content(item.AnhURL)" alt="Avatar" width="40" height="40" />
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.ManagerId }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.ManagerId }) |
+            @Html.ActionLink("Xoá", "Delete", new { id=item.ManagerId })
+        </td>
+    </tr>
+}
+
+</table>

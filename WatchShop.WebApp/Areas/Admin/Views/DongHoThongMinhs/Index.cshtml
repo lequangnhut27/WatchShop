@@ -1,0 +1,12 @@
+﻿@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Danh sách các sản phầm Đồng hồ thông minh</h2>
+<p>
+    @Html.ActionLink("Thêm sản phẩm đồng hồ mới", "Create")
+</p>
+
+<div id="contentPage">@{Html.RenderAction("ContentPartial", "DongHoThongMinhs");}</div>

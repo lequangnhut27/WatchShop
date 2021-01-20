@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CEC6BA58-9AF4-45E7-ACE8-B406092BD859}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WatchShop.Data</RootNamespace>
+    <AssemblyName>WatchShop.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201910151828082_InitialCreate.cs" />
+    <Compile Include="Migrations\201910151828082_InitialCreate.Designer.cs">
+      <DependentUpon>201910151828082_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910211538075_ChangeDongHoThongMinh.cs" />
+    <Compile Include="Migrations\201910211538075_ChangeDongHoThongMinh.Designer.cs">
+      <DependentUpon>201910211538075_ChangeDongHoThongMinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910211607000_Transfer_Column_DongHoThoiTrang_DongHo.cs" />
+    <Compile Include="Migrations\201910211607000_Transfer_Column_DongHoThoiTrang_DongHo.Designer.cs">
+      <DependentUpon>201910211607000_Transfer_Column_DongHoThoiTrang_DongHo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910221931015_ChangeLengthColDongHoThongMinh.cs" />
+    <Compile Include="Migrations\201910221931015_ChangeLengthColDongHoThongMinh.Designer.cs">
+      <DependentUpon>201910221931015_ChangeLengthColDongHoThongMinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911071004066_Set_Unique_ReadOnly_UsernameAccountManager_TenDangNhapKhachHang.cs" />
+    <Compile Include="Migrations\201911071004066_Set_Unique_ReadOnly_UsernameAccountManager_TenDangNhapKhachHang.Designer.cs">
+      <DependentUpon>201911071004066_Set_Unique_ReadOnly_UsernameAccountManager_TenDangNhapKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911151841399_AddColunm_MoTa_DongHo.cs" />
+    <Compile Include="Migrations\201911151841399_AddColunm_MoTa_DongHo.Designer.cs">
+      <DependentUpon>201911151841399_AddColunm_MoTa_DongHo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911170235056_AddColumn_SoLuong_DongHo.cs" />
+    <Compile Include="Migrations\201911170235056_AddColumn_SoLuong_DongHo.Designer.cs">
+      <DependentUpon>201911170235056_AddColumn_SoLuong_DongHo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007091213321_AddColumn_Enable_DongHo.cs" />
+    <Compile Include="Migrations\202007091213321_AddColumn_Enable_DongHo.Designer.cs">
+      <DependentUpon>202007091213321_AddColumn_Enable_DongHo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007091218197_AddColumn_Enable_KhachHang.cs" />
+    <Compile Include="Migrations\202007091218197_AddColumn_Enable_KhachHang.Designer.cs">
+      <DependentUpon>202007091218197_AddColumn_Enable_KhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007100601093_AddTable_Shipper.cs" />
+    <Compile Include="Migrations\202007100601093_AddTable_Shipper.Designer.cs">
+      <DependentUpon>202007100601093_AddTable_Shipper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007101432415_AddColumn_Username_Pass_Shipper.cs" />
+    <Compile Include="Migrations\202007101432415_AddColumn_Username_Pass_Shipper.Designer.cs">
+      <DependentUpon>202007101432415_AddColumn_Username_Pass_Shipper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007270443369_AddColumn_Gia_ChiTietHoaDon.cs" />
+    <Compile Include="Migrations\202007270443369_AddColumn_Gia_ChiTietHoaDon.Designer.cs">
+      <DependentUpon>202007270443369_AddColumn_Gia_ChiTietHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101181555290_AllowNullColumn_KhachHang.cs" />
+    <Compile Include="Migrations\202101181555290_AllowNullColumn_KhachHang.Designer.cs">
+      <DependentUpon>202101181555290_AllowNullColumn_KhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101191716572_AddColumn_SoDT_HoTen_HoaDon.cs" />
+    <Compile Include="Migrations\202101191716572_AddColumn_SoDT_HoTen_HoaDon.Designer.cs">
+      <DependentUpon>202101191716572_AddColumn_SoDT_HoTen_HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountManager.cs" />
+    <Compile Include="Models\ChiTietGiamGia.cs" />
+    <Compile Include="Models\ChiTietHoaDon.cs" />
+    <Compile Include="Models\DoiTuong.cs" />
+    <Compile Include="Models\DongHo.cs" />
+    <Compile Include="Models\DongHoThoiTrang.cs" />
+    <Compile Include="Models\DongHoThongMinh.cs" />
+    <Compile Include="Repositories\DongHoRepository.cs" />
+    <Compile Include="ViewModels\GioHang.cs" />
+    <Compile Include="Models\HinhThucThanhToan.cs" />
+    <Compile Include="Models\HoaDon.cs" />
+    <Compile Include="ViewModels\InfoFilter.cs" />
+    <Compile Include="ViewModels\ItemGioHang.cs" />
+    <Compile Include="Models\KhachHang.cs" />
+    <Compile Include="Models\LoaiGiamGia.cs" />
+    <Compile Include="ViewModels\RegisterKhachHangView.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="ViewModels\SelectedThuongHieu.cs" />
+    <Compile Include="Models\Shipper.cs" />
+    <Compile Include="Models\ThuongHieu.cs" />
+    <Compile Include="Models\TinhTrangHoaDon.cs" />
+    <Compile Include="Models\WebBanDongHoContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201910151828082_InitialCreate.resx">
+      <DependentUpon>201910151828082_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910211538075_ChangeDongHoThongMinh.resx">
+      <DependentUpon>201910211538075_ChangeDongHoThongMinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910211607000_Transfer_Column_DongHoThoiTrang_DongHo.resx">
+      <DependentUpon>201910211607000_Transfer_Column_DongHoThoiTrang_DongHo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910221931015_ChangeLengthColDongHoThongMinh.resx">
+      <DependentUpon>201910221931015_ChangeLengthColDongHoThongMinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911071004066_Set_Unique_ReadOnly_UsernameAccountManager_TenDangNhapKhachHang.resx">
+      <DependentUpon>201911071004066_Set_Unique_ReadOnly_UsernameAccountManager_TenDangNhapKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911151841399_AddColunm_MoTa_DongHo.resx">
+      <DependentUpon>201911151841399_AddColunm_MoTa_DongHo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911170235056_AddColumn_SoLuong_DongHo.resx">
+      <DependentUpon>201911170235056_AddColumn_SoLuong_DongHo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007091213321_AddColumn_Enable_DongHo.resx">
+      <DependentUpon>202007091213321_AddColumn_Enable_DongHo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007091218197_AddColumn_Enable_KhachHang.resx">
+      <DependentUpon>202007091218197_AddColumn_Enable_KhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007100601093_AddTable_Shipper.resx">
+      <DependentUpon>202007100601093_AddTable_Shipper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007101432415_AddColumn_Username_Pass_Shipper.resx">
+      <DependentUpon>202007101432415_AddColumn_Username_Pass_Shipper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007270443369_AddColumn_Gia_ChiTietHoaDon.resx">
+      <DependentUpon>202007270443369_AddColumn_Gia_ChiTietHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101181555290_AllowNullColumn_KhachHang.resx">
+      <DependentUpon>202101181555290_AllowNullColumn_KhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101191716572_AddColumn_SoDT_HoTen_HoaDon.resx">
+      <DependentUpon>202101191716572_AddColumn_SoDT_HoTen_HoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

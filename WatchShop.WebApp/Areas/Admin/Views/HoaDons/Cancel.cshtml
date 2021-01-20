@@ -1,0 +1,148 @@
+﻿@model WatchShop.Data.Models.HoaDon
+
+@{
+    ViewBag.Title = "Cancel";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Bạn có muốn huỷ đơn hàng @Model.MaHD ?</h2>
+
+<div>
+    <hr />
+    <table class="table table-striped">
+        <tr>
+            <th width="18%">
+                @Html.DisplayNameFor(model => model.MaHD):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.MaHD)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachHang.MaKH):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.KhachHang.MaKH)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachHang.HoTen):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.KhachHang.HoTen)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachHang.SoDT):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.KhachHang.SoDT)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaChiGiaoHang):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DiaChiGiaoHang)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayLapHD):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.NgayLapHD)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayGiaoDuKien):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.NgayGiaoDuKien)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HinhThucThanhToan.MoTa):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.HinhThucThanhToan.MoTa)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TinhTrangHoaDon.MoTa):
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.TinhTrangHoaDon.MoTa)
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered ta-center va-middle">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ChiTietHoaDons.ToList()[0].DongHo.MaDH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChiTietHoaDons.ToList()[0].DongHo.TenDH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChiTietHoaDons.ToList()[0].DongHo.AnhChinhURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChiTietHoaDons.ToList()[0].DongHo.GiaBan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChiTietHoaDons.ToList()[0].SoLuong)
+            </th>
+            <th>
+                Tổng
+            </th>
+        </tr>
+        @foreach (var item in Model.ChiTietHoaDons)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DongHo.MaDH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DongHo.TenDH)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.DongHo.AnhChinhURL)" alt="AnhChinh" width="100" height="100" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DongHo.GiaBan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    @{
+                        int? tong = item.DongHo.GiaBan * item.SoLuong;
+                    }
+                    @string.Format("{0:N0} VNĐ", tong)
+                </td>
+            </tr>
+        }
+        <tr>
+            <th colspan="6" class="text-right">
+                @Html.DisplayNameFor(model => model.TongGiaTriHD) : @Html.DisplayFor(model => model.TongGiaTriHD)
+            </th>
+        </tr>
+    </table>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Huỷ" class="btn btn-success" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

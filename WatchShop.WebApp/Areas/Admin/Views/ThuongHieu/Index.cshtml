@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WatchShop.Data.Models.ThuongHieu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Danh sách thương hiệu</h2>
+
+<p>
+    @Html.ActionLink("Thêm thương hiệu", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenTH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuocGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnhURL)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenTH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuocGia)
+            </td>
+            <td>
+                <img src="@Url.Content(item.AnhURL)" alt="Avatar"/>
+            </td>
+        </tr>
+    }
+
+</table>

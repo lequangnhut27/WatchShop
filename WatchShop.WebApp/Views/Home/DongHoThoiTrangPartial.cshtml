@@ -1,0 +1,24 @@
+﻿@model List<WatchShop.Data.Models.DongHo>
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content">
+    <div class="container">
+
+        <header class="section-heading">
+            <a href="@Url.Action("FilterDongHoThoiTrang","TrangChiTiet")" class="btn btn-outline-primary float-right">Xem thêm</a>
+            <h3 class="section-title">Đồng hồ thời trang</h3>
+        </header><!-- sect-heading -->
+
+
+        <div class="row">
+            @for (int i = 0; i < 4; i++)
+            {
+            <div class="col-md-3">
+                @{ Html.RenderAction("CardPartial", "Home", Model[i]); }
+            </div>
+                <!-- col.// -->
+            }
+        </div> <!-- row.// -->
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->

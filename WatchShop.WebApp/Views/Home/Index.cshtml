@@ -1,0 +1,96 @@
+﻿@if (TempData["ThanhToanMess"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                @Html.Raw(TempData["ThanhToanMess"]);
+            };
+    </script>
+}
+
+@{
+    ViewBag.Title = "WATCH STORE";
+}
+
+<nav class="navbar navbar-main navbar-expand-lg navbar-light border-bottom">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="main_nav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link pl-0" data-toggle="dropdown" href="#"><strong> <i class="fa fa-bars"></i> &nbsp  Tất cả danh mục</strong></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="@Url.Action("FilterDongHoThoiTrang", "TrangChiTiet")">Đồng hồ thời trang</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("FilterDongHoThoiTrang", "TrangChiTiet", new { doiTuong = "Nam" })">Đồng hồ nam</a>
+                        <a class="dropdown-item" href="@Url.Action("FilterDongHoThoiTrang","TrangChiTiet", new { doiTuong = "Nữ" })">Đồng hồ nữ</a>
+                        <a class="dropdown-item" href="@Url.Action("FilterDongHoThoiTrang","TrangChiTiet", new { doiTuong = "Trẻ em" })">Đồng hồ trẻ em</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("FilterDongHoThongMinh","TrangChiTiet")">Đồng hồ thông minh</a>
+
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("FilterDongHoThoiTrang","TrangChiTiet")">Đồng hồ thời trang</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("FilterDongHoThongMinh","TrangChiTiet")">Đồng hồ thông minh</a>
+                </li>
+            </ul>
+        </div> <!-- collapse .// -->
+    </div> <!-- container .// -->
+</nav>
+
+<!-- ========================= SECTION INTRO ========================= -->
+<section class="section-intro padding-y-sm">
+    <div class="container">
+
+        <div class="intro-banner-wrap">
+            <img src="~/Content/images/banner.png" class="img-fluid rounded">
+        </div>
+
+    </div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION INTRO END// ========================= -->
+<!-- ========================= SECTION FEATURE ========================= -->
+<section class="section-content padding-y-sm">
+    <div class="container">
+        <article class="card card-body">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <figure style="text-align:center">
+                        <span class="text-primary"><i class="fa fa-2x fa-truck"></i></span>
+                        <figcaption class="pt-3">
+                            <h5 class="title">Giao hàng nhanh</h5>
+                        </figcaption>
+                    </figure> <!-- iconbox // -->
+                </div><!-- col // -->
+                <div class="col-md-4">
+                    <figure style="text-align:center">
+                        <span class="text-primary"><i class="fa fa-2x fa-building"></i></span>
+                        <figcaption class="pt-3">
+                            <h5 class="title">Sáng tạo</h5>
+                        </figcaption>
+                    </figure> <!-- iconbox // -->
+                </div><!-- col // -->
+                <div class="col-md-4">
+                    <figure style="text-align:center">
+                        <span class="text-primary"><i class="fa fa-2x fa-lock"></i></span>
+                        <figcaption class="pt-3">
+                            <h5 class="title">Bảo đảm</h5>
+                        </figcaption>
+                    </figure> <!-- iconbox // -->
+                </div> <!-- col // -->
+            </div>
+        </article>
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION FEATURE END// ========================= -->
+
+@Html.Action("DongHoGiamGiaPartial", "Home")
+@Html.Action("DongHoThoiTrangPartial", "Home")
+@Html.Action("DongHoThongMinhPartial", "Home")

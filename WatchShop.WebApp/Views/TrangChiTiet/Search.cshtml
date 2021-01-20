@@ -1,0 +1,16 @@
+﻿@model List<WatchShop.Data.Models.DongHo>
+
+@{
+    ViewBag.Title = ViewBag.TitleFilter;
+}
+
+
+<section class="section-content">
+    <div class="container">
+        <header class="section-heading">
+            <h3 class="section-title">@ViewBag.TitleFilter</h3>
+        </header>
+
+        @{ Html.RenderPartial("ContentFilter", Model); }
+    </div>
+</section>

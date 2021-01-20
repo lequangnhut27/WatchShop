@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Giỏ hàng";
+}
+
+@if (TempData["KQTT"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                @Html.Raw(TempData["KQTT"]);
+            };
+    </script>
+}
+
+<section class="section-content padding-bottom-sm padding-top-sm">
+    <div class="container">
+        <header class="section-heading">
+            <h3 class="section-title">Giỏ hàng của bạn</h3>
+        </header>
+        <div id="contentGioHang" class="row">
+            @{Html.RenderAction("ContentGioHangPartial", "GioHang");}
+        </div>
+        <footer class="section-footer">
+            <a href="@Url.Action("Index","Home")" class="btn btn-success">Tiếp tục mua hàng</a>
+            @if (((WatchShop.Data.ViewModels.GioHang)Session["GioHang"]).ListItems.Count > 0)
+            {
+                <a href="@Url.Action("ThanhToan", "GioHang")" class="btn btn-warning float-right">Thanh toán</a>
+            }
+        </footer>
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

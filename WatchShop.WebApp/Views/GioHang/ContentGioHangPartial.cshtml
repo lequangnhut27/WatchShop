@@ -1,0 +1,88 @@
+﻿@{
+    WatchShop.Data.ViewModels.GioHang gioHang = Session["GioHang"] as WatchShop.Data.ViewModels.GioHang;
+}
+
+
+<table class="table table-shopping-cart ta-center va-middle" style="border-right: none">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(item => gioHang.ListItems[0].MaDH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(item => gioHang.ListItems[0].TenDH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(item => gioHang.ListItems[0].AnhURL)
+        </th>
+        <th>
+            Giá
+        </th>
+        <th>
+            @Html.DisplayNameFor(item => gioHang.ListItems[0].SoLuong)
+        </th>
+        <th>
+            Tổng
+        </th>
+        <th>
+        </th>
+    </tr>
+    @for (int i = 0; i < gioHang.ListItems.Count; i++)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => gioHang.ListItems[i].MaDH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => gioHang.ListItems[i].TenDH)
+            </td>
+            <td>
+                <img src="@Url.Content(gioHang.ListItems[i].AnhURL)" alt="AnhChinh" width="100" height="100" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => gioHang.ListItems[i].Gia)
+            </td>
+            <td width="8%">
+                <input type="number" value="@gioHang.ListItems[i].SoLuong" class="form-control" style= "display: block; text-align: right" min="1" onchange="UpdateGioHang('@gioHang.ListItems[i].MaDH',$(this).val())" />
+            </td>
+            <td width="17%">
+                @{
+                    int? tong = gioHang.ListItems[i].Gia * gioHang.ListItems[i].SoLuong;
+                }
+                @string.Format("{0:N0} VNĐ", tong)
+            </td>
+            <td style="width: 3%">
+                <a class="nav-link" href="#" onclick="DeleteGioHang('@gioHang.ListItems[i].MaDH'); return false;">
+                    <i class="fas fa-fw fa-trash"></i>
+                    <span>Xoá</span>
+                </a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <th colspan="7" class="text-right">
+            @Html.DisplayNameFor(model => gioHang.TongGTHD) : @Html.DisplayFor(model => gioHang.TongGTHD)
+        </th>
+    </tr>
+</table>
+<script>
+    function UpdateGioHang(maDH,soLuong) {
+        var url = "@Url.Action("ContentGioHangPartial", "GioHang")";
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: { maDH: maDH, soLuong: soLuong },
+            success: function (response) { $("#contentGioHang").html(response); }
+        });
+    }
+
+    function DeleteGioHang(maDH) {
+        var url = "@Url.Action("ContentGioHangPartial", "GioHang")";
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: { delMaDH: maDH },
+            success: function (response) { $("#contentGioHang").html(response); }
+        });
+        AddToCard();
+    }
+</script>

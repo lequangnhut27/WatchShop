@@ -1,0 +1,10 @@
+﻿@model List<WatchShop.Data.Models.DongHo>
+
+<div class="row">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="col-md-3">
+            @{ Html.RenderAction("CardPartial", "Home", Model[i]); }
+        </div>
+    }
+</div>

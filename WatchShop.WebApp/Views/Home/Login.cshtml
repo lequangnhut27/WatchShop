@@ -1,0 +1,69 @@
+﻿@model WatchShop.Data.Models.KhachHang
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@if (TempData["DangKyMess"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                @Html.Raw(TempData["DangKyMess"]);
+            };
+    </script>
+}
+
+@if (TempData["LoiDangNhap"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                @Html.Raw(TempData["LoiDangNhap"]);
+            };
+    </script>
+}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y" style="min-height:84vh">
+
+    <!-- ============================ COMPONENT LOGIN   ================================= -->
+    <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Đăng nhập</h4>
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.EditorFor(kh => kh.TenDangNhap, new { htmlAttributes = new { @class = "form-control", @placeholder = "Tên đăng nhập" } })
+                    @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    @Html.EditorFor(kh => kh.MatKhau, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mật khẩu", @type = "password" } })
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                </div> <!-- form-group// -->
+
+                <div class="form-group">
+                    <a href="#" class="float-right">Quên mật khẩu?</a>
+                </div> <!-- form-group form-check .// -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Đăng nhập</button>
+                    <a href="@Url.Action("LoginExternal", new { type = "Google" })" class="btn btn-google btn-user btn-block">
+                        <i class="fab fa-google fa-fw"></i> Đăng nhập với Google
+                    </a>
+                </div> <!-- form-group// -->
+            }
+
+        </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+
+    <p class="text-center mt-4">Bạn chưa có tài khoản? @Html.ActionLink("Đăng ký", "Register", "Home")</p>
+    <br><br>
+    <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

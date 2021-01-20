@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchShop.Data", "WatchShop.Data\WatchShop.Data.csproj", "{CEC6BA58-9AF4-45E7-ACE8-B406092BD859}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchShop.WebApp", "WatchShop.WebApp\WatchShop.WebApp.csproj", "{1126B641-D8AE-4AAB-81A8-126C7E645122}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchShop.Application", "WatchShop.Application\WatchShop.Application.csproj", "{B2309D33-1CC8-4DE5-ACAC-FF4B9CF1F70C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Data Access Layer", "1. Data Access Layer", "{13B17F78-14AC-4B48-9669-31C81C82250B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Business Layer", "2. Business Layer", "{8CD72FFF-F940-4F3F-BA54-E06D216A4A4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Presentation Layer", "3. Presentation Layer", "{B5E683F1-6E07-4199-A69B-42C851B09731}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEC6BA58-9AF4-45E7-ACE8-B406092BD859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEC6BA58-9AF4-45E7-ACE8-B406092BD859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEC6BA58-9AF4-45E7-ACE8-B406092BD859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEC6BA58-9AF4-45E7-ACE8-B406092BD859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1126B641-D8AE-4AAB-81A8-126C7E645122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1126B641-D8AE-4AAB-81A8-126C7E645122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1126B641-D8AE-4AAB-81A8-126C7E645122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1126B641-D8AE-4AAB-81A8-126C7E645122}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2309D33-1CC8-4DE5-ACAC-FF4B9CF1F70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2309D33-1CC8-4DE5-ACAC-FF4B9CF1F70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2309D33-1CC8-4DE5-ACAC-FF4B9CF1F70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2309D33-1CC8-4DE5-ACAC-FF4B9CF1F70C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CEC6BA58-9AF4-45E7-ACE8-B406092BD859} = {13B17F78-14AC-4B48-9669-31C81C82250B}
+		{1126B641-D8AE-4AAB-81A8-126C7E645122} = {B5E683F1-6E07-4199-A69B-42C851B09731}
+		{B2309D33-1CC8-4DE5-ACAC-FF4B9CF1F70C} = {8CD72FFF-F940-4F3F-BA54-E06D216A4A4F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50ADC302-B0CE-4F64-B932-B97596C68117}
+	EndGlobalSection
+EndGlobal

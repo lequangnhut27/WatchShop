@@ -1,0 +1,74 @@
+﻿@model IEnumerable<WatchShop.Data.Models.HoaDon>
+
+@if (TempData["ThongBao"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                @Html.Raw(TempData["ThongBao"]);
+            };
+    </script>
+}
+
+<section class="section-content padding-bottom-sm padding-top-sm">
+    <div class="container">
+        <header class="section-heading">
+            <h3 class="section-title">Đơn hàng của bạn</h3>
+        </header>
+        <div id="contentGioHang" class="row">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MaHD)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KhachHang.HoTen)
+                    </th>
+                    <td>Tổng số sản phẩm</td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TongGiaTriHD)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NgayLapHD)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TinhTrangHoaDon.MoTa)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaHD)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KhachHang.HoTen)
+                        </td>
+                        <td>
+                            @item.ChiTietHoaDons.Count
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TongGiaTriHD)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayLapHD)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TinhTrangHoaDon.MoTa)
+                        </td>
+                        <td>
+                            @if (item.MaTTHD == "CHUA" || item.MaTTHD == "XULY")
+                            {
+                                @Html.ActionLink("Huỷ", "HuyDonHang", new { id = item.MaHD })
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <footer class="section-footer">
+        </footer>
+    </div>
+</section>

@@ -1,0 +1,230 @@
+﻿@model WatchShop.Data.Models.HoaDon
+
+@using (Html.BeginForm("Create", "HoaDons", FormMethod.Post, new { @id = "frmCreate" }))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachHang.HoTen):
+                </th>
+                <td>
+                    @Html.DropDownListFor(model => model.MaKH, (IEnumerable<SelectListItem>)ViewBag.KhachHang, "Chọn khách hàng", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiaChiGiaoHang):
+                </th>
+                <td>
+                    @Html.EditorFor(model => model.DiaChiGiaoHang, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none" } })
+                    @Html.ValidationMessageFor(model => model.DiaChiGiaoHang, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayGiaoDuKien):
+                </th>
+                <td>
+                    @Html.EditorFor(model => model.NgayGiaoDuKien, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NgayGiaoDuKien, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.HinhThucThanhToan.MoTa):
+                </th>
+                <td>
+                    @Html.DropDownListFor(model => model.MaHTTT, (IEnumerable<SelectListItem>)ViewBag.HTTT, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MaHTTT, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+        </table>
+
+        <a class="nav-link" data-toggle="modal" data-target="#modalAdd" href="#">
+            <i class="fas fa-fw fa-shopping-cart"></i>
+            <span>Thêm sản phẩm</span>
+        </a>
+
+        <div id="tableCart">
+            <table class="table table-bordered ta-center va-middle" style="border-right: none">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChiTietHoaDons.ToList()[0].DongHo.MaDH)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChiTietHoaDons.ToList()[0].DongHo.TenDH)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChiTietHoaDons.ToList()[0].DongHo.AnhChinhURL)
+                    </th>
+                    <th>
+                        Giá
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChiTietHoaDons.ToList()[0].SoLuong)
+                    </th>
+                    <th>
+                        Tổng
+                    </th>
+                </tr>
+                @for (int i = 0; i < Model.ChiTietHoaDons.Count; i++)
+                {
+                    @Html.HiddenFor(modelItem => Model.ChiTietHoaDons[i].MaHD)
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(modelItem => Model.ChiTietHoaDons[i].MaDH)
+                            @Html.HiddenFor(modelItem => Model.ChiTietHoaDons[i].DongHo.MaDH)
+                            @Html.DisplayFor(modelItem => Model.ChiTietHoaDons[i].DongHo.MaDH)
+                        </td>
+                        <td>
+                            @Html.HiddenFor(modelItem => Model.ChiTietHoaDons[i].DongHo.TenDH)
+                            @Html.DisplayFor(modelItem => Model.ChiTietHoaDons[i].DongHo.TenDH)
+                        </td>
+                        <td>
+                            @Html.HiddenFor(modelItem => Model.ChiTietHoaDons[i].DongHo.AnhChinhURL)
+                            <img src="@Url.Content(Model.ChiTietHoaDons[i].DongHo.AnhChinhURL)" alt="AnhChinh" width="100" height="100" />
+                        </td>
+                        <td>
+                            @Html.HiddenFor(modelItem => Model.ChiTietHoaDons[i].DongHo.GiaBan)
+                            @Html.DisplayFor(modelItem => Model.ChiTietHoaDons[i].DongHo.GiaBan)
+                        </td>
+                        <td width="7%">
+                            @Html.EditorFor(modelItem => Model.ChiTietHoaDons[i].SoLuong, new { htmlAttributes = new { @class = "form-control", @style = "display: block; text-align: right", @min = 1, @onchange = "UpdateViewCart()" } })
+                        </td>
+                        <td width="17%">
+                            @{
+                                int? tong = Model.ChiTietHoaDons[i].DongHo.GiaBan * Model.ChiTietHoaDons[i].SoLuong;
+                            }
+                            @string.Format("{0:N0} VNĐ", tong)
+                        </td>
+                        <td style="border: none; width: 3%">
+                            <a class="nav-link" href="#" onclick="DeleteProductViewCart(@Model.ChiTietHoaDons[i].MaDH); return false;">
+                                <i class="fas fa-fw fa-trash"></i>
+                                <span>Xoá</span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <th colspan="6" class="text-right">
+                        @Html.HiddenFor(model => model.TongGiaTriHD)
+                        @Html.DisplayNameFor(model => model.TongGiaTriHD) : @Html.DisplayFor(model => model.TongGiaTriHD)
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <input type="submit" value="Xác nhận" class="btn btn-success" />
+    </div>
+}
+
+<div class="modal fade" id="modalAdd" role="dialog">
+    <div class="modal-dialog modal-lg" style="width: 1000px; max-width: 1000px">
+        <div class="modal-content" style="width: 1000px">
+            <div class="modal-header">
+                <h4 class="modal-title">Chọn đồng hồ</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                @{
+                    IEnumerable<WatchShop.Data.Models.DongHo> dongHoes = ViewBag.DongHoes as IEnumerable<WatchShop.Data.Models.DongHo>;
+
+                }
+                <table class="table ta-center va-middle">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(dh => dongHoes.ToList()[0].MaDH)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(dh => dongHoes.ToList()[0].TenDH)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(dh => dongHoes.ToList()[0].AnhChinhURL)
+                        </th>
+                        <th>
+                            Giá
+                        </th>
+                        <th>
+                            Số lượng
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                    @foreach (var item in dongHoes)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(i => item.MaDH)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(i => item.TenDH)
+                            </td>
+                            <td>
+                                <img src="@Url.Content(item.AnhChinhURL)" alt="AnhChinh" width="100" height="100" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(i => item.GiaBan)
+                            </td>
+                            <td>
+                                <input type="number" id="inpSL-@item.MaDH" style="display: block; text-align:right; width: 61px" min="1" value="1" class="form-control" />
+                            </td>
+                            <td>
+                                <a class="nav-link" href="#" onclick="AddProductViewCart(@item.MaDH); return false;">
+                                    <i class="fas fa-fw fa-plus"></i>
+                                    <span>Thêm</span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="closeModalAdd">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function UpdateViewCart() {
+        var url = "@Url.Action("ContentCreatePartial","HoaDons")";
+        var model = $('#frmCreate').serialize();
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: model,
+            success: function (response) { $("#contentFrmCreate").html(response); }
+        })
+    }
+
+    function AddProductViewCart(maDH) {
+        $("#closeModalAdd").click();
+        var url = "@Url.Action("ContentCreatePartial","HoaDons")";
+        var model = $('#frmCreate').serialize();
+        var soLuong = $("#inpSL-" + maDH).val();
+        model += "&addMaDH=" + maDH + "&soLuong=" + soLuong;
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: model,
+            success: function (response) { $("#contentFrmCreate").html(response); }
+        });
+    }
+
+    function DeleteProductViewCart(maDH) {
+        var url = "@Url.Action("ContentCreatePartial","HoaDons")";
+        var model = $('#frmCreate').serialize();
+        model += "&delMaDH=" + maDH;
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: model,
+            success: function (response) { $("#contentFrmCreate").html(response); }
+        });
+    }
+</script>
