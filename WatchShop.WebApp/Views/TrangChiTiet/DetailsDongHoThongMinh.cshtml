@@ -65,6 +65,20 @@
                 </div> <!-- row.// -->
             </div>
         </div>
+        <header class="section-heading">
+            <a href="@Url.Action("FilterDongHoThongMinh","TrangChiTiet")" class="btn btn-outline-primary float-right">Xem thêm</a>
+            <h3 class="section-title">Gợi ý cho bạn</h3>
+        </header><!-- sect-heading -->
+
+        <div class="row">
+            @foreach (WatchShop.Data.Models.DongHo item in ViewBag.DongHoCungLoai)
+            {
+                <div class="col-md-3">
+                    @{ Html.RenderAction("CardPartial", "Home", item); }
+                </div>
+                <!-- col.// -->
+            }
+        </div> <!-- row.// -->
     </div>
 </section>
 
