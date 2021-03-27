@@ -20,7 +20,14 @@ namespace WatchShop.WebApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             DongHo dongHo = db.DongHoes.Find(maDH);
-            ViewBag.DongHoCungLoai = db.DongHoes.Where(item => item.DongHoThoiTrang.MaDoiTuong == dongHo.DongHoThoiTrang.MaDoiTuong);
+            if (db.DongHoThoiTrangs.Find(dongHo.MaDH) != null)
+            {
+                ViewBag.DongHoCungLoai = db.DongHoes.Where(item => item.DongHoThoiTrang.MaDoiTuong == dongHo.DongHoThoiTrang.MaDoiTuong).Take(4);
+            }
+            else
+            {
+                ViewBag.DongHoCungLoai = db.DongHoes.Where(item => item.MaDH == item.DongHoThongMinh.MaDH).Take(4);
+            }
             if (dongHo == null)
             {
                 return HttpNotFound();
