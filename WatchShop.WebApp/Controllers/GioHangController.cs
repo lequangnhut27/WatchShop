@@ -60,7 +60,12 @@ namespace WatchShop.WebApp.Controllers
                 if (Session["GioHang"] == null)
                     return "0";
             }
-            return ((GioHang)Session["GioHang"]).ListItems.Count.ToString();
+            int tongSoLuong = 0;
+            foreach (var item in ((GioHang)Session["GioHang"]).ListItems)
+            {
+                tongSoLuong += item.SoLuong;
+            }
+            return tongSoLuong.ToString(); ;
         }
 
         public ActionResult ThanhToan()
