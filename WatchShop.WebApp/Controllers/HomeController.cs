@@ -83,12 +83,10 @@ namespace WatchShop.WebApp.Controllers
             if (khachHang == null)
             {
                 string name = claimsPrincipal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
-                MailAddress mail = new MailAddress(email);
                 khachHang = new KhachHang()
                 {
                     HoTen = name,
-                    Email = mail.Address,
-                    TenDangNhap = mail.User,
+                    Email = email,
                     Enable = true,
                     AnhURL = "~/Content/img/AvatarKhachHang/DefaultAvatar.png"
                 };
@@ -108,6 +106,7 @@ namespace WatchShop.WebApp.Controllers
                 //SoDT = khachHang.SoDT
             };
             return RedirectToAction("Index", "Home");
+
         }
 
         public ActionResult Logout()
